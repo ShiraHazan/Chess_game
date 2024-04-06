@@ -4,7 +4,7 @@ from Piece_types.Pawn import Pawn
 from Piece_types.Queen import Queen
 from Piece_types.Rook import Rook
 from Piece_types.Knight import Knight
-from Color import Color
+from Enums.Color import Color
 
 
 class Board:
