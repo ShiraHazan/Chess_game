@@ -16,7 +16,7 @@ class Pawn(Piece):
         # Pawn can move forward by one square
         if start_col == end_col and end_row == start_row + direction:
             # Check if the target square is empty
-            if board_department[end_row][end_col] == ' ':
+            if self.is_place_empty(end_row, end_col, board_department):
                 self.move(start_pos, end_pos, board_department)
                 self.has_moved = True
                 return True
@@ -24,7 +24,9 @@ class Pawn(Piece):
         # Pawn can move forward by two squares on its first move
         if not self.has_moved and start_col == end_col and end_row == start_row + 2 * direction:
             # Check if both squares are empty
-            if board_department[end_row][end_col] == ' ' and board_department[start_row + direction][end_col] == ' ':
+            if self.is_place_empty(end_row, end_col, board_department) and self.is_place_empty(start_row + direction,
+                                                                                               end_col,
+                                                                                               board_department):
                 self.move(start_pos, end_pos, board_department)
                 self.has_moved = True
                 return True
@@ -40,3 +42,7 @@ class Pawn(Piece):
 
         return False
 
+    def is_place_empty(self, i, j, board_department):
+        if board_department[i][j] == ' ':
+            return True
+        return False

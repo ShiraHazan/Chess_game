@@ -4,7 +4,7 @@ class Piece:
         self.color = color
         self.type = piece_type.value
 
-    def check_move(self):
+    def check_move(self, start_pos, end_pos, board_department):
         """Code to determine valid move for a piece"""
         pass
 
