@@ -1,12 +1,13 @@
 from Board import Board
 from Player import Player
+from Color import Color
 
 
 class Game:
     def __init__(self):
         self.board = Board()
-        self.player1 = Player("Player 1", "white")
-        self.player2 = Player("Player 2", "black")
+        self.player1 = Player("Player 1", Color.WHITE)
+        self.player2 = Player("Player 2", Color.BLACK)
         self.current_player = self.player1
 
     def start_game(self):
