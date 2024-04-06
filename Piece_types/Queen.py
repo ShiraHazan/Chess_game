@@ -1,4 +1,5 @@
 from Piece import Piece
+from Rook import Rook
 from Enums.PieceType import PieceType
 
 
@@ -15,12 +16,12 @@ class Queen(Piece):
         # Check if the move is valid for a rook (horizontal or vertical movement)
         if start_row == end_row and start_col != end_col:
             step = 1 if end_col > start_col else -1
-            if self.is_clear_path(start_row, start_col, end_col, step, 'col', board):
+            if self.is_clear_path('col', start_col, end_col, step, board):
                 self.move(start_pos, end_pos, board)
                 return True
         elif start_col == end_col and start_row != end_row:
             step = 1 if end_row > start_row else -1
-            if self.is_clear_path(start_col, start_row, end_row, step, 'row', board):
+            if self.is_clear_path('row', start_row, end_row, step, board):
                 self.move(start_pos, end_pos, board)
                 return True
 
@@ -34,13 +35,8 @@ class Queen(Piece):
 
         return False
 
-    def is_clear_path(self, fixed_pos, start_pos, end_pos, step, axis, board):
-        for pos in range(start_pos + step, end_pos, step):
-            if axis == 'row' and board[start_pos][pos] != ' ':
-                return False
-            elif axis == 'col' and board[pos][start_pos] != ' ':
-                return False
-        return True
+    def is_clear_path(self, fixed_pos, start_pos, end_pos, step, board):
+        return Rook.is_clear_path(fixed_pos, start_pos, end_pos, step, board)
 
     def is_clear_diagonal(self, start_row, start_col, end_row, end_col, row_step, col_step, board):
         row, col = start_row + row_step, start_col + col_step

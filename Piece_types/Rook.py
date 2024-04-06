@@ -15,12 +15,12 @@ class Rook(Piece):
         # Rook can move horizontally or vertically in straight lines
         if start_row == end_row and start_col != end_col:
             step = 1 if end_col > start_col else -1
-            if self.is_clear_path(start_row, start_col, end_col, step, board):
+            if self.is_clear_path('col', start_col, end_col, step, board):
                 self.move(start_pos, end_pos, board)
                 return True
         elif start_col == end_col and start_row != end_row:
             step = 1 if end_row > start_row else -1
-            if self.is_clear_path(start_col, start_row, end_row, step, board):
+            if self.is_clear_path('row', start_row, end_row, step, board):
                 self.move(start_pos, end_pos, board)
                 return True
 
