@@ -28,3 +28,7 @@ class Board:
         ]
         self.board[6] = [Pawn(Color.BLACK) for _ in range(8)]
 
+    def is_place_empty(self, i, j, ):
+        if self.board[i][j] == ' ':
+            return True
+        return False
