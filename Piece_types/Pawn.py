@@ -18,6 +18,7 @@ class Pawn(Piece):
             # Check if the target square is empty
             if board_department[end_row][end_col] == ' ':
                 self.move(start_pos, end_pos, board_department)
+                self.has_moved = True
                 return True
 
         # Pawn can move forward by two squares on its first move
@@ -25,6 +26,7 @@ class Pawn(Piece):
             # Check if both squares are empty
             if board_department[end_row][end_col] == ' ' and board_department[start_row + direction][end_col] == ' ':
                 self.move(start_pos, end_pos, board_department)
+                self.has_moved = True
                 return True
 
         # Pawn can capture diagonally
@@ -33,13 +35,8 @@ class Pawn(Piece):
             # Check if there's an opponent's piece to capture
             if isinstance(target_piece, Piece) and target_piece.color != self.color:
                 self.move(start_pos, end_pos, board_department)
+                self.has_moved = True
                 return True
 
         return False
 
-    def move(self, start_pos, end_pos, board_department):
-        start_row, start_col = start_pos
-        end_row, end_col = end_pos
-        board_department[end_row][end_col] = board_department[start_row][start_col]
-        board_department[start_row][start_col] = ' '
-        self.has_moved = True
