@@ -13,4 +13,3 @@ class Piece:
         end_row, end_col = end_pos
         board_department[end_row][end_col] = board_department[start_row][start_col]
         board_department[start_row][start_col] = ' '
-
