@@ -30,9 +30,6 @@ class Queen(Piece):
 
         return False
 
-    def is_clear_path(self, fixed_pos, start_pos, end_pos, step, board):
-        return Rook.is_clear_path(fixed_pos, start_pos, end_pos, step, board)
-
     def is_clear_diagonal(self, start_row, start_col, end_row, end_col, row_step, col_step, board):
         row, col = start_row + row_step, start_col + col_step
         while row != end_row and col != end_col:
