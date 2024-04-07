@@ -1,5 +1,6 @@
 from Piece import Piece
 from Rook import Rook
+from Bishop import Bishop
 from Enums.PieceType import PieceType
 
 
@@ -21,12 +22,9 @@ class Queen(Piece):
             return True
 
         # Check if the move is valid for a bishop (diagonal movement)
-        if abs(end_row - start_row) == abs(end_col - start_col):
-            row_step = 1 if end_row > start_row else -1
-            col_step = 1 if end_col > start_col else -1
-            if self.is_clear_diagonal(start_row, start_col, end_row, end_col, row_step, col_step, board):
-                self.move(start_pos, end_pos, board)
-                return True
+        if Bishop.check_is_diagonal(start_pos, end_pos, board):
+            self.move(start_pos, end_pos, board)
+            return True
 
         return False
 
