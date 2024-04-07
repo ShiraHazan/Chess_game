@@ -76,7 +76,7 @@ class ChessboardGUI:
             # Update the piece's position in the stored piece_objects dictionary
             self.piece_objects[self.selected_piece] = (row, col)
             # Show a message box after piece is released
-            messagebox.showinfo("Move Information", f"Piece moved to ({row}, {col})")
+            messagebox.showinfo("Move Information", f"Piece moved to ({row+1}, {col+1})", icon=messagebox.WARNING)
         self.selected_piece = None
 
 
