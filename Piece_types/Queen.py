@@ -12,18 +12,13 @@ class Queen(Piece):
         start_row, start_col = start_pos
         end_row, end_col = end_pos
 
-        # צריך להשתמש בפונקציות בצריח ורץ
         # Check if the move is valid for a rook (horizontal or vertical movement)
-        if start_row == end_row and start_col != end_col:
-            step = 1 if end_col > start_col else -1
-            if self.is_clear_path('col', start_col, end_col, step, board):
-                self.move(start_pos, end_pos, board)
-                return True
-        elif start_col == end_col and start_row != end_row:
-            step = 1 if end_row > start_row else -1
-            if self.is_clear_path('row', start_row, end_row, step, board):
-                self.move(start_pos, end_pos, board)
-                return True
+        if Rook.check_is_col(start_row, end_row, start_col, end_col, board):
+            self.move(start_pos, end_pos, board)
+            return True
+        elif Rook.check_is_row(start_row, end_row, start_col, end_col, board):
+            self.move(start_pos, end_pos, board)
+            return True
 
         # Check if the move is valid for a bishop (diagonal movement)
         if abs(end_row - start_row) == abs(end_col - start_col):
