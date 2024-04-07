@@ -27,12 +27,4 @@ class Queen(Piece):
             return True
 
         return False
-
-    def is_clear_diagonal(self, start_row, start_col, end_row, end_col, row_step, col_step, board):
-        row, col = start_row + row_step, start_col + col_step
-        while row != end_row and col != end_col:
-            if board[row][col] != ' ':
-                return False
-            row += row_step
-            col += col_step
-        return True
+    
