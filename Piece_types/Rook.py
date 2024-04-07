@@ -23,6 +23,7 @@ class Rook(Piece):
 
     @staticmethod
     def check_is_col(start_row, end_row, start_col, end_col, board):
+        """Checking if it is a col shift"""
         if start_row == end_row and start_col != end_col:
             step = 1 if end_col > start_col else -1
             if Rook.is_clear_path('col', start_col, end_col, step, board):
@@ -31,6 +32,7 @@ class Rook(Piece):
 
     @staticmethod
     def check_is_row(start_row, end_row, start_col, end_col, board):
+        """Checking if it is a row shift"""
         if start_col == end_col and start_row != end_row:
             step = 1 if end_row > start_row else -1
             if Rook.is_clear_path('row', start_row, end_row, step, board):
