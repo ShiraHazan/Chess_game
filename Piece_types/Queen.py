@@ -27,4 +27,3 @@ class Queen(Piece):
             return True
 
         return False
-    
