@@ -22,18 +22,18 @@ class Rook(Piece):
         return False
 
     @staticmethod
-    def check_is_col(self, start_row, end_row, start_col, end_col, board):
+    def check_is_col(start_row, end_row, start_col, end_col, board):
         if start_row == end_row and start_col != end_col:
             step = 1 if end_col > start_col else -1
-            if self.is_clear_path('col', start_col, end_col, step, board):
+            if Rook.is_clear_path('col', start_col, end_col, step, board):
                 return True
         return False
 
     @staticmethod
-    def check_is_row(self, start_row, end_row, start_col, end_col, board):
+    def check_is_row(start_row, end_row, start_col, end_col, board):
         if start_col == end_col and start_row != end_row:
             step = 1 if end_row > start_row else -1
-            if self.is_clear_path('row', start_row, end_row, step, board):
+            if Rook.is_clear_path('row', start_row, end_row, step, board):
                 return True
 
     @staticmethod
