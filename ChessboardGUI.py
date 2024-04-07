@@ -5,8 +5,8 @@ from tkinter import messagebox
 class ChessboardGUI:
     def __init__(self, master):
         self.master = master
-        self.board_canvas = tk.Canvas(master, width=600, height=600)
-        self.board_canvas.pack()
+        self.board_canvas = tk.Canvas(master, width=660, height=660)
+        self.board_canvas.pack(side=tk.LEFT)
         self.draw_board()
         self.place_pieces()
         self.selected_piece = None  # To store the selected piece
@@ -14,6 +14,9 @@ class ChessboardGUI:
         self.board_canvas.bind("<Button-1>", self.on_piece_click)
         self.board_canvas.bind("<B1-Motion>", self.on_piece_drag)
         self.board_canvas.bind("<ButtonRelease-1>", self.on_piece_release)
+
+        # Create row and column labels
+        self.create_labels()
 
     def draw_board(self):
         colors = ["#E8DCC2", "#B18D76"]  # Light beige and wood brown colors
@@ -48,6 +51,20 @@ class ChessboardGUI:
         piece_obj = self.board_canvas.create_text(x, y, text=piece, font=("Arial", square_size // 2), fill='black')
         self.piece_objects[piece_obj] = (row, col)  # Store piece object with its position
 
+    def create_labels(self):
+        # Create row labels (numbers on the left side)
+        for row in range(8):
+            y = row * (600 // 8) + (600 // 16)  # Adjust position
+            label = tk.Label(self.master, text=str(8 - row), font=("Arial", 12))
+            label.place(x=610, y=y)
+
+        # Create column labels (letters at the top)
+        letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+        for col in range(8):
+            x = col * (600 // 8) + (600 // 16)  # Adjust position
+            label = tk.Label(self.master, text=letters[col], font=("Arial", 12))
+            label.place(x=x, y=610)
+
     def on_piece_click(self, event):
         # Get the piece object at the clicked position
         piece = self.board_canvas.find_closest(event.x, event.y)
@@ -76,7 +93,7 @@ class ChessboardGUI:
             # Update the piece's position in the stored piece_objects dictionary
             self.piece_objects[self.selected_piece] = (row, col)
             # Show a message box after piece is released
-            messagebox.showinfo("Move Information", f"Piece moved to ({row+1}, {col+1})", icon=messagebox.WARNING)
+            messagebox.showinfo("Move Information", f"Piece moved to ({8 - row}, {chr(col + 97)})")
         self.selected_piece = None
 
 
