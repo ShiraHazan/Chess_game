@@ -35,12 +35,12 @@ class ChessboardGUI:
         self.piece_objects = {}  # To store piece objects for dragging
         square_size = 600 // 8
         for col, piece in enumerate("RNBQKBNR"):
-            self.place_piece(0, col, pieces[piece], square_size)
-            self.place_piece(7, col, pieces[piece.lower()], square_size)
+            self.place_piece(7, col, pieces[piece], square_size)
+            self.place_piece(0, col, pieces[piece.lower()], square_size)
 
         for col in range(8):
-            self.place_piece(1, col, pieces["P"], square_size)  # Place white pawns
-            self.place_piece(6, col, pieces["p"], square_size)  # Place black pawns
+            self.place_piece(6, col, pieces["P"], square_size)  # Place white pawns
+            self.place_piece(1, col, pieces["p"], square_size)  # Place black pawns
 
     def place_piece(self, row, col, piece, square_size):
         x, y = col * square_size + square_size // 2, row * square_size + square_size // 2
