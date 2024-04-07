@@ -15,7 +15,7 @@ class ChessboardGUI:
         self.board_canvas.bind("<ButtonRelease-1>", self.on_piece_release)
 
     def draw_board(self):
-        colors = ["gray", "white"]  # Light squares on top
+        colors = ["#E8DCC2", "#B18D76"]  # Light squares on top
         square_size = 600 // 8
         for row in range(8):
             for col in range(8):
