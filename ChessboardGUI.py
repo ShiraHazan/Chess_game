@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 
 class ChessboardGUI:
@@ -15,7 +16,7 @@ class ChessboardGUI:
         self.board_canvas.bind("<ButtonRelease-1>", self.on_piece_release)
 
     def draw_board(self):
-        colors = ["#E8DCC2", "#B18D76"]  # Light squares on top
+        colors = ["#E8DCC2", "#B18D76"]  # Light beige and wood brown colors
         square_size = 600 // 8
         for row in range(8):
             for col in range(8):
@@ -35,16 +36,16 @@ class ChessboardGUI:
         self.piece_objects = {}  # To store piece objects for dragging
         square_size = 600 // 8
         for col, piece in enumerate("RNBQKBNR"):
-            self.place_piece(7, col, pieces[piece], square_size)
-            self.place_piece(0, col, pieces[piece.lower()], square_size)
+            self.place_piece(0, col, pieces[piece], square_size)
+            self.place_piece(7, col, pieces[piece.lower()], square_size)
 
         for col in range(8):
-            self.place_piece(6, col, pieces["P"], square_size)  # Place white pawns
-            self.place_piece(1, col, pieces["p"], square_size)  # Place black pawns
+            self.place_piece(1, col, pieces["P"], square_size)  # Place white pawns
+            self.place_piece(6, col, pieces["p"], square_size)  # Place black pawns
 
     def place_piece(self, row, col, piece, square_size):
         x, y = col * square_size + square_size // 2, row * square_size + square_size // 2
-        piece_obj = self.board_canvas.create_text(x, y, text=piece, font=("Arial", square_size // 2))
+        piece_obj = self.board_canvas.create_text(x, y, text=piece, font=("Arial", square_size // 2), fill='black')
         self.piece_objects[piece_obj] = (row, col)  # Store piece object with its position
 
     def on_piece_click(self, event):
@@ -74,6 +75,8 @@ class ChessboardGUI:
                                      row * (600 // 8) + (600 // 16))
             # Update the piece's position in the stored piece_objects dictionary
             self.piece_objects[self.selected_piece] = (row, col)
+            # Show a message box after piece is released
+            messagebox.showinfo("Move Information", f"Piece moved to ({row}, {col})")
         self.selected_piece = None
 
 
