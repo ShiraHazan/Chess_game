@@ -5,7 +5,7 @@ from tkinter import messagebox
 class ChessboardGUI:
     def __init__(self, master):
         self.master = master
-        self.board_canvas = tk.Canvas(master, width=660, height=660)
+        self.board_canvas = tk.Canvas(master, width=655, height=655)
         self.board_canvas.pack(side=tk.LEFT)
         self.draw_board()
         self.place_pieces()
@@ -99,6 +99,6 @@ class ChessboardGUI:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Chessboard")
+    root.title("Chessboard. All right reserved. Power by: Shira Hazan ©")
     ChessboardGUI(root)
     root.mainloop()
