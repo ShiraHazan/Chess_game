@@ -19,6 +19,7 @@ class ChessboardGUI:
         self.create_labels()
 
     def draw_board(self):
+        """Draw the chessboard with alternating colors"""
         colors = ["#E8DCC2", "#B18D76"]  # Light beige and wood brown colors
         square_size = 600 // 8
         for row in range(8):
@@ -30,7 +31,7 @@ class ChessboardGUI:
                 self.board_canvas.create_rectangle(x0, y0, x1, y1, fill=color)
 
     def place_pieces(self):
-        # Chess pieces Unicode characters
+        """Place chess pieces on the board"""
         pieces = {
             "R": "\u2656", "N": "\u2658", "B": "\u2657", "Q": "\u2655",
             "K": "\u2654", "P": "\u2659", "r": "\u265C", "n": "\u265E",
@@ -47,18 +48,18 @@ class ChessboardGUI:
             self.place_piece(6, col, pieces["p"], square_size)  # Place black pawns
 
     def place_piece(self, row, col, piece, square_size):
+        """Place a chess piece on the board at given position"""
         x, y = col * square_size + square_size // 2, row * square_size + square_size // 2
         piece_obj = self.board_canvas.create_text(x, y, text=piece, font=("Arial", square_size // 2), fill='black')
         self.piece_objects[piece_obj] = (row, col)  # Store piece object with its position
 
     def create_labels(self):
-        # Create row labels (numbers on the left side)
+        """Create row and column labels for the board"""
         for row in range(8):
             y = row * (600 // 8) + (600 // 16)  # Adjust position
             label = tk.Label(self.master, text=str(8 - row), font=("Arial", 12))
             label.place(x=610, y=y)
 
-        # Create column labels (letters at the top)
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
         for col in range(8):
             x = col * (600 // 8) + (600 // 16)  # Adjust position
@@ -66,7 +67,7 @@ class ChessboardGUI:
             label.place(x=x, y=610)
 
     def on_piece_click(self, event):
-        # Get the piece object at the clicked position
+        """Handle piece click event"""
         piece = self.board_canvas.find_closest(event.x, event.y)
         if piece:
             self.selected_piece = piece[0]
@@ -74,6 +75,7 @@ class ChessboardGUI:
             self.drag_data["y"] = event.y
 
     def on_piece_drag(self, event):
+        """Handle piece drag event"""
         if self.selected_piece:
             delta_x = event.x - self.drag_data["x"]
             delta_y = event.y - self.drag_data["y"]
@@ -82,17 +84,14 @@ class ChessboardGUI:
             self.drag_data["y"] = event.y
 
     def on_piece_release(self, event):
+        """Handle piece release event"""
         if self.selected_piece:
-            # Get the position on the board where the piece was dropped
             row = event.y // (600 // 8)
             col = event.x // (600 // 8)
-            # Update the position of the piece object on the board
             self.board_canvas.coords(self.selected_piece,
                                      col * (600 // 8) + (600 // 16),
                                      row * (600 // 8) + (600 // 16))
-            # Update the piece's position in the stored piece_objects dictionary
             self.piece_objects[self.selected_piece] = (row, col)
-            # Show a message box after piece is released
             messagebox.showinfo("Move Information", f"Piece moved to ({8 - row}, {chr(col + 97)})")
         self.selected_piece = None
 
