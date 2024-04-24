@@ -6,7 +6,7 @@ class Piece:
 
     def check_move(self, start_pos, end_pos, board_department):
         """Code to determine valid move for a piece"""
-        pass
+        raise NotImplementedError("check_move method must be implemented in subclass")
 
     def move(self, start_pos, end_pos, board_department):
         start_row, start_col = start_pos
