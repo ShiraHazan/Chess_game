@@ -37,6 +37,7 @@ class Rook(Piece):
             step = 1 if end_row > start_row else -1
             if Rook.is_clear_path('row', start_row, end_row, step, board):
                 return True
+        return False
 
     @staticmethod
     def is_clear_path(fixed_pos, start_pos, end_pos, step, board):

@@ -14,10 +14,8 @@ class Queen(Piece):
         end_row, end_col = end_pos
 
         # Check if the move is valid for a rook (horizontal or vertical movement)
-        if Rook.check_is_col(start_row, end_row, start_col, end_col, board):
-            self.move(start_pos, end_pos, board)
-            return True
-        elif Rook.check_is_row(start_row, end_row, start_col, end_col, board):
+        if Rook.check_is_col(start_row, end_row, start_col, end_col, board) or \
+           Rook.check_is_row(start_row, end_row, start_col, end_col, board):
             self.move(start_pos, end_pos, board)
             return True
 
